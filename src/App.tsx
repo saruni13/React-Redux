@@ -1,6 +1,7 @@
-import React from 'react';
+import React  from'react'
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { incremented } from './features/counter/counter-slice';
+import { incremented , amountAdded} from './features/counter/counter-slice';
+import logo from './logo.svg'
 import './App.css';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
 
   // Handler for the button click
   function handleClick() {
-    dispatch(incremented()); // Dispatch the increment action
+    dispatch(amountAdded(3)); // Dispatch the increment action
   }
 
   return (
