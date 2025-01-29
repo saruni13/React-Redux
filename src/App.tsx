@@ -1,14 +1,14 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { incremented, amountAdded } from './features/counter/counter-slice';
-import { usefetchBreedsQuery } from './features/counter/dogs/dogs-api-slice';
+import { increment, amountAdded } from './features/counter/counter-slice';
+import { fetchBreeds } from './features/counter/dogs/dogs-api-slice';
 import './App.css';
 
 function App() {
   // Accessing the current state and dispatch
   const value = useAppSelector((state) => state.counter.value); // Correctly selecting the counter state
   const dispatch = useAppDispatch();
-  const { data = [], isfetching } = usefetchBreedsQuery();
+  const { data = [], isfetching } = fetchBreeds();
 
   // Handler for the button click
   function handleClick() {
@@ -25,7 +25,7 @@ function App() {
         </p>
       </div>
       <div>
-        
+
       </div>
       <div>
         {isfetching ? (
@@ -41,7 +41,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((breed) => (
+                {data.map((breed:any) => (
                   <tr key={breed.id}>
                     <td>{breed.name}</td>
                     <td>

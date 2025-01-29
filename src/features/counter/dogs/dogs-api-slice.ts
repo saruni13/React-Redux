@@ -1,5 +1,4 @@
-import { fetchBaseQuery } from '@reduxjs/toolkit/query';
-import { createApi, fetchBaseQueary } from '@reduxjs/toolkit/query/query';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const DOGS_API_KEY = 'cbfb51a2-84b6-4025-a3e2-ed8616edf311';
 
@@ -12,25 +11,22 @@ interface Breed{
 }
 
  export const apiSlice = createApi({
-    reducerPath: 'api'
+    reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://api.thedogapi.com/v1/',
-        prepareHeaders: (headers) {
+        prepareHeaders: (headers) => {
             headers.set('x-api-key', DOGS_API_KEY);
-            
             return headers;
-        }
-        endpoints(buider){
-            return{
-                fetchBreeds: buider.query<Breed[], number|void>({
-                    query(limit = 10){
-                        return `/breeds?limit=${limit}`;
-                    },
-                }),
-            };
-        },
-
-    })
+    }, }),
+    endpoints: (builder) => {
+        return {
+            fetchBreeds: builder.query<Breed[], number | void>({
+                query(limit = 10) {
+                    return `/breeds?limit=${limit}`;
+                },
+            }),
+        };
+    },
 })
 
-export const { usefetchBreedsQuery } = apiSlice.endpoints;
+export const { fetchBreeds } = apiSlice.endpoints;

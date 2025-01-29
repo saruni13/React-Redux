@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { Store } from './app/Store'; // Ensure the correct import path for your store
+import { store } from './app/Store'; // Ensure the correct import path for your store
 import App from './App.tsx';
 import './index.css';
 
@@ -12,7 +12,7 @@ if (rootElement) {
 
     root.render(
         <React.StrictMode>
-            <Provider Store={Store}>
+            <Provider store={store}>
                 <App />
             </Provider>
         </React.StrictMode>
