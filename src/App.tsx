@@ -8,7 +8,7 @@ function App() {
   // Accessing the current state and dispatch
   const value = useAppSelector((state) => state.counter.value); // Correctly selecting the counter state
   const dispatch = useAppDispatch();
-  const { data = [], isfetching } = fetchBreeds();
+  const { data = [], fetching } = fetchBreeds();
 
   // Handler for the button click
   function handleClick() {
@@ -28,7 +28,7 @@ function App() {
 
       </div>
       <div>
-        {isfetching ? (
+        {fetching ? (
           <p>Loading...</p>
         ) : (
           <>
