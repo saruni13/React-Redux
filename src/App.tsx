@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { increment, amountAdded } from './features/counter/counter-slice';
+import {  amountAdded } from './features/counter/counter-slice';
 import { fetchBreeds } from './features/counter/dogs/dogs-api-slice';
 import './App.css';
 
@@ -8,6 +8,7 @@ function App() {
   // Accessing the current state and dispatch
   const value = useAppSelector((state) => state.counter.value); // Correctly selecting the counter state
   const dispatch = useAppDispatch();
+  const [numdogs,setNumDogs] = useState(10);
   const { data = [], fetching } = fetchBreeds();
 
   // Handler for the button click
@@ -21,7 +22,7 @@ function App() {
       <div className="card">
         <button onClick={handleClick}>Count is: {value}</button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          {/* Edit <code>src/App.tsx</code> and save to test HMR */}
         </p>
       </div>
       <div>
@@ -32,6 +33,13 @@ function App() {
           <p>Loading...</p>
         ) : (
           <>
+          <div>
+            <p>Dogs to fetch:</p>
+            <select value= {numdogs} onChange={(e) => setNumDogs(Number(e.target.value))}>
+               <option value= {numdogs}>{numdogs}</option>
+            </select>
+
+          </div>
             <p>Number of dogs fetched: {data.length}</p>
             <table>
               <thead>
